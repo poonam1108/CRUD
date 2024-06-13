@@ -31,19 +31,41 @@ public class UserServiceImpl implements UserServiceI {
     }
 
     @Override
-    public User getSingleUser(Long userId) {
+    public User getSingleUser(Long userId) throws Exception{
 
-        User user = userRepository.findById(userId).get();
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Resource not found on server"));
         return user;
+
+
+//        Optional<User> user = userRepository.findById(userId);
+//        if(user.isPresent())
+//        {
+//            return user.get();
+//        }
+//        else
+//        {
+//            throw new Exception("Resource not found on server ,userId: "+userId);
+//        }
+
+
+
     }
+
 
     @Override
     public List<User> getAllUsers() {
-        return List.of();
+        List<User> allUsers = userRepository.findAll();
+        return allUsers;
+
     }
+
+
 
     @Override
     public void deleteUser(Long userId) {
 
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Resource not found on server"));
+        userRepository.delete(user);
     }
 }

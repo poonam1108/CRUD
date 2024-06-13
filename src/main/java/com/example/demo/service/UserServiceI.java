@@ -10,7 +10,7 @@ public interface UserServiceI {
 
    User updateUser(User user, Long userId);
 
-   User getSingleUser(Long userId);
+   User getSingleUser(Long userId) throws Exception;
 
    List<User> getAllUsers();
 
