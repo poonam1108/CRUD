@@ -4,6 +4,8 @@ import com.example.demo.model.User;
 import com.example.demo.service.UserServiceI;
 import com.example.demo.service.impl.UserServiceImpl;
 import org.apache.coyote.Request;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,8 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserController {
 
+    Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserServiceI userServiceI;
 
@@ -23,6 +27,7 @@ public class UserController {
    @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody User user)
     {
+        logger.info("Entering the request for save user data");
         User savedUser = userServiceI.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
