@@ -4,6 +4,7 @@ import com.example.demo.model.User;
 import com.example.demo.service.UserServiceI;
 import com.example.demo.service.impl.UserServiceImpl;
 import org.apache.coyote.Request;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,11 +16,10 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserController {
 
+    @Autowired
     private UserServiceI userServiceI;
 
-
-
-   // @RequestMapping(method = RequestMethod.POST,name="/users")
+    // @RequestMapping(method = RequestMethod.POST,name="/users")
    @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody User user)
     {
