@@ -4,10 +4,12 @@ import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserServiceI {
 
     @Autowired UserRepository userRepository;
@@ -20,7 +22,6 @@ public class UserServiceImpl implements UserServiceI {
 
     @Override
     public User updateUser(User user, Long userId) {
-
         User user1 = userRepository.findById(userId).get();
         user1.setUserName(user.getUserName());
         user1.setUserAge(user.getUserAge());
@@ -48,8 +49,6 @@ public class UserServiceImpl implements UserServiceI {
             throw new Exception("Resource not found on server ,userId: "+userId);
         }
 
-
-
     }
 
 
@@ -59,8 +58,6 @@ public class UserServiceImpl implements UserServiceI {
         return allUsers;
 
     }
-
-
 
     @Override
     public void deleteUser(Long userId) {
