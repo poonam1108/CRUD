@@ -22,22 +22,22 @@ public class UserServiceImpl implements UserServiceI {
 
     @Override
     public User createUser(User user) {
-        logger.info("Entering into createUser method of UserServiceImpl class");
+        logger.info("Entering into createUser method of UserServiceImpl Class");
         User savedUser = userRepository.save(user);
-        logger.info("Completed the createUser method of UserServiceImpl class");
+        logger.info("Completed the createUser method of UserServiceImpl Class");
         return savedUser;
     }
 
     @Override
     public User updateUser(User user, Long userId) {
-        logger.info("Entering into updateUser method of UserServiceImpl class with userId: {}",userId);
+        logger.info("Entering into updateUser method of UserServiceImpl Class with userId: {}",userId);
         User user1 = userRepository.findById(userId).get();
         user1.setUserName(user.getUserName());
         user1.setUserAge(user.getUserAge());
         user1.setAbout(user.getAbout());
 
         User updatedUser = userRepository.save(user1);
-        logger.info("Completed the updateUser method of UserServiceImpl class with userId: {}",userId);
+        logger.info("Completed the updateUser method of UserServiceImpl Class with userId: {}",userId);
         return updatedUser;
     }
 
@@ -77,9 +77,9 @@ public class UserServiceImpl implements UserServiceI {
 
     @Override
     public void deleteUser(Long userId) {
-        logger.info("Entering into deleteUser method of UserServiceImpl class");
+        logger.info("Entering into deleteUser method of UserServiceImpl Class with userId: {} ",userId);
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Resource not found on server"));
-        logger.info("Completed the deleteUsers method of UserServiceImpl class");
+        logger.info("Completed the deleteUsers method of UserServiceImpl Class with userId: {} ",userId);
         userRepository.delete(user);
     }
 }
